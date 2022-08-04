@@ -9,7 +9,7 @@ require(zon_file('./pkg/util/config.js'));
 
 const utils = 'etask string date csv exec json stream util'.split(/\s+/);
 console.log(`Loaded modules: ${['lodash'].concat(utils)}`);
-const r = repl.start('$ ');
+const r = repl.start(`Welcome to Node ${process.version}\n$ `);
 for (let util of utils)
 {
     let variable = util;
@@ -28,3 +28,4 @@ Object.defineProperty(r.context, '_', {
     enumerable: true,
     value: require('lodash'),
 });
+
