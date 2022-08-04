@@ -7,8 +7,9 @@ const zon_root = path.join(os.homedir(), 'zon1');
 const zon_file = file=>path.join(zon_root, file);
 require(zon_file('./pkg/util/config.js'));
 
-const r = repl.start('$ ');
 const utils = 'etask string date csv exec json stream util'.split(/\s+/);
+console.log(`Loaded modules: ${['lodash'].concat(utils)}`);
+const r = repl.start('$ ');
 for (let util of utils)
 {
     let variable = util;
