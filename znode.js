@@ -10,7 +10,7 @@ require(zon_file('./pkg/util/config.js'));
 const utils = `etask string date csv exec json stream util cli zdot zerr url
     rand queue os`.split(/\s+/);
 console.log(`Loaded modules: ${['lodash'].concat(utils)}`);
-const r = repl.start(`Welcome to Node ${process.version}\n$ `);
+const r = repl.start(`$ `);
 for (let util of utils)
 {
     let variable = util;
