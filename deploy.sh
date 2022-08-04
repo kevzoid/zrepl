@@ -1,19 +1,23 @@
-#!/bin/bash
+#!/bin/bash -x
 
-# XXX: rename to znode.js
-rm ~/znodee.js
+script=~/znode.js
 
-if [[ -e ~/znodee.js ]]; then
-    echo "znode.js script already exists in the home dir" >&2
-    exit 1
-fi
-
-wget https://raw.githubusercontent.com/kevzoid/znode-REPL/master/znodee.js -O \
-    ~/znodee.js
+wget -q https://raw.githubusercontent.com/kevzoid/znode-REPL/master/znode.js \
+    -O $script
 
 if [[ $? -ne 0 ]]; then
     echo "Script download failed" >&2
     exit 1
 fi
 
-echo DONE
+chmod a+x $script
+
+if ! [[ -L ~/.local/bin/znode ]]; then
+    ln -s $script ~/.local/bin/znode
+fi
+
+if ! grep -q "alias znode=" ~/.bashrc; then
+    echo 'alias znode="sb 1 &>/dev/null && znode"' >> ~/.bashrc
+fi
+
+echo 'DONE: open a new shell and type `znode` to enter the REPL'
