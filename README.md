@@ -1,3 +1,3 @@
 # znode-REPL
 
-curl https://raw.githubusercontent.com/kevzoid/znode-REPL/master/deploy.sh | bash
+`$ curl https://raw.githubusercontent.com/kevzoid/znode-REPL/master/deploy.sh | bash`
