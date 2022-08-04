@@ -11,6 +11,7 @@ const utils = `etask string date csv exec json stream util cli zdot zerr url
     rand queue os`.split(/\s+/);
 console.log(`Loaded modules: ${['lodash'].concat(utils)}`);
 const r = repl.start(`$ `);
+const modules = {};
 for (let util of utils)
 {
     let variable = util;
@@ -18,7 +19,9 @@ for (let util of utils)
         variable = `z${variable}`;
     if (r.context.global[variable] || r.context[variable])
         throw `cannot redeclare variable name "${variable}"`;
-    r.context[variable] = require(zon_file(`./pkg/util/${util}`));
+    let module = zon_file(`./pkg/util/${util}`);
+    modules[variable] = module;
+    r.context[variable] = require(module);
 }
 
 // in REPL, `_` by default is an alias to the result of the most recently
@@ -30,3 +33,4 @@ Object.defineProperty(r.context, '_', {
     value: require('lodash'),
 });
 
+r.context.global.__zmodules__ = modules;
