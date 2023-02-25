@@ -12,7 +12,7 @@ fi
 
 chmod a+x $script
 
-# check if /.local/bin is even in $PATH
+# XXX: check if /.local/bin is even in $PATH
 if ! [[ -L ~/.local/bin/znode ]]; then
     echo "Symlinking $script -> $HOME/.local/bin/znode"
     ln -s $script ~/.local/bin/znode
